@@ -47,7 +47,14 @@ def pregunta_02():
     ]
 
     """
-    return
+    from collections import Counter
+    
+    lista=list()
+    for row in data:
+        lista.append(row[0])
+        lista.sort()
+    out=list(Counter(lista).items())
+    return(out)
 
 
 def pregunta_03():
