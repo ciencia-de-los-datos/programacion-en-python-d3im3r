@@ -119,7 +119,17 @@ def pregunta_04():
     ]
 
     """
-    return
+    from collections import Counter
+    
+    lista=list()
+    for row in data:
+        a,b,fecha,*c=row
+        mes=fecha.split('-')[1]
+        lista.append(mes)
+    out=sorted(list(Counter(lista).items()))
+    
+    return out
+
 
 
 def pregunta_05():
