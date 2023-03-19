@@ -72,7 +72,29 @@ def pregunta_03():
     ]
 
     """
-    return
+    lista=list()
+    acum_a=0
+    acum_b=0
+    acum_c=0
+    acum_d=0
+    acum_e=0
+    letra=''
+    num=0
+    for row in data:
+        letra,num,*_=row
+        if letra == 'A':
+            acum_a +=  int(num)
+        if letra == 'B':
+            acum_b +=  int(num)
+        if letra == 'C':
+            acum_c +=  int(num)
+        if letra == 'D':
+            acum_d +=  int(num)
+        if letra == 'E':
+            acum_e +=  int(num)
+    out=list([('A',acum_a),('B',acum_b),('C',acum_c),('D',acum_d),('E',acum_e)])
+
+    return out
 
 
 def pregunta_04():
