@@ -120,7 +120,7 @@ def pregunta_04():
 
     """
     from collections import Counter
-    
+
     lista=list()
     for row in data:
         a,b,fecha,*c=row
@@ -147,7 +147,30 @@ def pregunta_05():
     ]
 
     """
-    return
+    a=list()
+    b=list()
+    c=list()
+    d=list()
+    e=list()
+    for row in data:
+        letra,num,*_ =row
+        if letra =='A':
+            a+=num
+        if letra =='B':
+            b+=num
+        if letra =='C':
+            c+=num
+        if letra =='D':
+            d+=num
+        if letra =='E':
+            e+=num
+    out:list=([('A',int(max(a)),int(min(a))),
+            ('B',int(max(b)),int(min(b))),
+            ('C',int(max(c)),int(min(c))),
+            ('D',int(max(d)),int(min(d))),
+            ('E',int(max(e)),int(min(e)))          
+            ])
+    return out
 
 
 def pregunta_06():
