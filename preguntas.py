@@ -11,6 +11,10 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 
 """
+import csv
+
+data= open('data.csv' , newline='')  
+data = csv.reader(data, delimiter='\t')
 
 
 def pregunta_01():
@@ -21,7 +25,11 @@ def pregunta_01():
     214
 
     """
-    return
+    acum =0
+    for row in data:
+        num =  (int(row[1]))
+        acum += num
+    return ((acum))
 
 
 def pregunta_02():
@@ -39,7 +47,14 @@ def pregunta_02():
     ]
 
     """
-    return
+    from collections import Counter
+    
+    lista=list()
+    for row in data:
+        lista.append(row[0])
+        lista.sort()
+    out=list(Counter(lista).items())
+    return(out)
 
 
 def pregunta_03():
@@ -57,7 +72,29 @@ def pregunta_03():
     ]
 
     """
-    return
+    lista=list()
+    acum_a=0
+    acum_b=0
+    acum_c=0
+    acum_d=0
+    acum_e=0
+    letra=''
+    num=0
+    for row in data:
+        letra,num,*_=row
+        if letra == 'A':
+            acum_a +=  int(num)
+        if letra == 'B':
+            acum_b +=  int(num)
+        if letra == 'C':
+            acum_c +=  int(num)
+        if letra == 'D':
+            acum_d +=  int(num)
+        if letra == 'E':
+            acum_e +=  int(num)
+    out=list([('A',acum_a),('B',acum_b),('C',acum_c),('D',acum_d),('E',acum_e)])
+
+    return out
 
 
 def pregunta_04():
@@ -82,7 +119,17 @@ def pregunta_04():
     ]
 
     """
-    return
+    from collections import Counter
+
+    lista=list()
+    for row in data:
+        a,b,fecha,*c=row
+        mes=fecha.split('-')[1]
+        lista.append(mes)
+    out=sorted(list(Counter(lista).items()))
+    
+    return out
+
 
 
 def pregunta_05():
@@ -100,7 +147,30 @@ def pregunta_05():
     ]
 
     """
-    return
+    a=list()
+    b=list()
+    c=list()
+    d=list()
+    e=list()
+    for row in data:
+        letra,num,*_ =row
+        if letra =='A':
+            a+=num
+        if letra =='B':
+            b+=num
+        if letra =='C':
+            c+=num
+        if letra =='D':
+            d+=num
+        if letra =='E':
+            e+=num
+    out:list=([('A',int(max(a)),int(min(a))),
+            ('B',int(max(b)),int(min(b))),
+            ('C',int(max(c)),int(min(c))),
+            ('D',int(max(d)),int(min(d))),
+            ('E',int(max(e)),int(min(e)))          
+            ])
+    return out
 
 
 def pregunta_06():
@@ -125,7 +195,21 @@ def pregunta_06():
     ]
 
     """
-    return
+    dic={}
+    for row in data:
+        column = row[4]
+        for key_value in column.split(","):
+            key, value = key_value.split(":")
+            value = int(value)
+            if key in dic:
+                dic[key].append(value)
+            else:
+                dic[key] = [value]
+        out = []
+        for key, values in sorted((dic.items())):
+            out.append((key, min(values), max(values)))
+
+    return out
 
 
 def pregunta_07():
@@ -149,7 +233,17 @@ def pregunta_07():
     ]
 
     """
-    return
+    dic={}
+    for row in data:
+        column1=row[0] 
+        column2=int(row[1])
+        if column2 in dic:
+            dic[column2].append(column1)
+        else:
+            dic[column2]=[column1]
+    out=sorted(dic.items())
+
+    return out
 
 
 def pregunta_08():
@@ -174,7 +268,23 @@ def pregunta_08():
     ]
 
     """
-    return
+    dic={}
+    out=[]
+    for row in data:
+        column1=row[0]
+        column2=int(row[1])
+        if column2 in dic:
+            if column1 not in dic[column2]:
+                dic[column2].append(column1)
+        else:
+            dic[column2]=[column1]
+
+    lista=sorted(dic.items())
+    for item in lista:
+        index=item[0]
+        out.append((index,    sorted(item[1])))
+
+    return out
 
 
 def pregunta_09():
@@ -197,7 +307,16 @@ def pregunta_09():
     }
 
     """
-    return
+    from collections import Counter
+    lista:list =[]
+    for row in data:
+        column = row[4]
+        for key_value in column.split(","):
+            key, value = key_value.split(":")
+            lista.append(key)
+            lista.sort()
+    out=dict(Counter(lista))
+    return out
 
 
 def pregunta_10():
@@ -218,7 +337,13 @@ def pregunta_10():
 
 
     """
-    return
+    lista=[]
+    for row in data:
+        letra=row[0]
+        column4=row[3]
+        column5=row[4]
+        lista.append(tuple((letra,len(column4.split(',')),len(column5.split(',')))))
+    return lista
 
 
 def pregunta_11():
@@ -239,7 +364,20 @@ def pregunta_11():
 
 
     """
-    return
+    lista=[]
+    dic={}
+    for row in data:
+        num=int(row[1])
+        letra=row[3].split(',')
+        for item in letra:
+            if item in dic:
+                dic[item].append(num)
+            else:
+                dic[item]=[num]
+    for key, value in sorted((dic.items())):
+        lista.append((key,sum(value)))
+    out=dict(lista)
+    return out
 
 
 def pregunta_12():
@@ -257,4 +395,18 @@ def pregunta_12():
     }
 
     """
-    return
+    lista=[]
+    dic={}
+    for row in data:
+        key=row[0]
+        letra=row[4].split(',')
+        for item in letra:
+            if key in dic:
+                dic[key].append(int(item.split(':')[1]))
+            else:
+                dic[key]=[int(item.split(':')[1])]
+
+    for key, value in sorted((dic.items())):
+        lista.append((key,sum(value)))
+    out=dict(lista)
+    return out
