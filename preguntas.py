@@ -337,7 +337,13 @@ def pregunta_10():
 
 
     """
-    return
+    lista=[]
+    for row in data:
+        letra=row[0]
+        column4=row[3]
+        column5=row[4]
+        lista.append(tuple((letra,len(column4.split(',')),len(column5.split(',')))))
+    return lista
 
 
 def pregunta_11():
