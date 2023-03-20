@@ -195,7 +195,21 @@ def pregunta_06():
     ]
 
     """
-    return
+    dic={}
+    for row in data:
+        column = row[4]
+        for key_value in column.split(","):
+            key, value = key_value.split(":")
+            value = int(value)
+            if key in dic:
+                dic[key].append(value)
+            else:
+                dic[key] = [value]
+        out = []
+        for key, values in sorted((dic.items())):
+            out.append((key, min(values), max(values)))
+
+    return out
 
 
 def pregunta_07():
