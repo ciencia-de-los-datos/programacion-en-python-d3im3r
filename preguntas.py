@@ -307,7 +307,16 @@ def pregunta_09():
     }
 
     """
-    return
+    from collections import Counter
+    lista:list =[]
+    for row in data:
+        column = row[4]
+        for key_value in column.split(","):
+            key, value = key_value.split(":")
+            lista.append(key)
+            lista.sort()
+    out=dict(Counter(lista))
+    return out
 
 
 def pregunta_10():
