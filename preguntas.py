@@ -268,7 +268,23 @@ def pregunta_08():
     ]
 
     """
-    return
+    dic={}
+    out=[]
+    for row in data:
+        column1=row[0]
+        column2=int(row[1])
+        if column2 in dic:
+            if column1 not in dic[column2]:
+                dic[column2].append(column1)
+        else:
+            dic[column2]=[column1]
+
+    lista=sorted(dic.items())
+    for item in lista:
+        index=item[0]
+        out.append((index,    sorted(item[1])))
+
+    return out
 
 
 def pregunta_09():
