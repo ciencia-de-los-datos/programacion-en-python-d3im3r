@@ -233,7 +233,17 @@ def pregunta_07():
     ]
 
     """
-    return
+    dic={}
+    for row in data:
+        column1=row[0] 
+        column2=int(row[1])
+        if column2 in dic:
+            dic[column2].append(column1)
+        else:
+            dic[column2]=[column1]
+    out=sorted(dic.items())
+
+    return out
 
 
 def pregunta_08():
