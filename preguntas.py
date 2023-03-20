@@ -364,7 +364,20 @@ def pregunta_11():
 
 
     """
-    return
+    lista=[]
+    dic={}
+    for row in data:
+        num=int(row[1])
+        letra=row[3].split(',')
+        for item in letra:
+            if item in dic:
+                dic[item].append(num)
+            else:
+                dic[item]=[num]
+    for key, value in sorted((dic.items())):
+        lista.append((key,sum(value)))
+    out=dict(lista)
+    return out
 
 
 def pregunta_12():
@@ -382,4 +395,18 @@ def pregunta_12():
     }
 
     """
-    return
+    lista=[]
+    dic={}
+    for row in data:
+        key=row[0]
+        letra=row[4].split(',')
+        for item in letra:
+            if key in dic:
+                dic[key].append(int(item.split(':')[1]))
+            else:
+                dic[key]=[int(item.split(':')[1])]
+
+    for key, value in sorted((dic.items())):
+        lista.append((key,sum(value)))
+    out=dict(lista)
+    return out
